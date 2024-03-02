@@ -3,7 +3,7 @@ from openai import images, OpenAI
 
 def main():
     print("hi")
-    genImage(1,2,3,4,5,6,7,8,9,10,11,12)
+    print(genImage(1,2,3,4,5,6,7,8,9,10,11,12))
 
 def genImage(roomD1, roomD2, bedD1, bedD2, tableD1, tableD2, bookshelfD1, bookshelfD2, chairD1, chairD2, dresserD1, dresserD2):
     #make a string for each name + demiension parameter 
@@ -19,7 +19,6 @@ def genImage(roomD1, roomD2, bedD1, bedD2, tableD1, tableD2, bookshelfD1, booksh
     chairString = "a " + chairD1 + " by " + chairD2 + " chair"
     dresserString = "a " + dresserD1 + " by " + dresserD2 + " dresser"
 
-    if (bedD1 != 0):
-        print(bedString)
+    return(bedString)
 
     #with no additional furniture. Draw like the attached image. Keep it as bare bones as possible
