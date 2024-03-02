@@ -5,21 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Box and Text Input</title>
     <style>
-        .room-dimensions {
-            width: 400px;
-            height: 50px;
-            display: flex;
-            justify-content: space-between;
-        }
     </style>
 </head>
 <body>
-    <h2>Room</h2>
-    <div class="room-dimensions">
-        <input type = "number" id = "roomHeight" placeholder = "1">
-        <h3>by</h3>
-        <input type = "number" id = "roomWidth" placeholder = "1">
-    </div>
+    <form method = "post">
+        <table>
+            <tr>
+                <td>
+                    <p>Room: </p>
+                </td>
+                <td>
+                    <input type = "number" id = "roomHeight" placeholder = "1">
+                </td>
+                <td>
+                    <p> by </p>
+                </td>
+                <td>
+                    <input type = "number" id = "roomWidth" placeholder = "1">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" id="bedSelect" name="bed" value="off">
+                    <label for="bedSelect">Bed: </label><br>
+                </td>
+                <td>
+                    <input type = "number" id = "bedLength" placeholder = "1">
+                </td>
+                <td>
+                    <p> by </p>
+                </td>
+                <td>
+                    <input type = "number" id = "bedWidth" placeholder = "1">
+                </td>
+            </tr> 
+            <tr>
+                <td>
+                    <input type="checkbox" id="tableSelect" name="table" value="off">
+                    <label for="tableSelect">Table: </label><br>
+                </td>
+                <td>
+                    <input type = "number" id = "tableLength" placeholder = "1">
+                </td>
+                <td>
+                    <p> by </p>
+                </td>
+                <td>
+                    <input type = "number" id = "tableWidth" placeholder = "1">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" id="bookshelfSelect" name="bookshelf" value="off">
+                    <label for="bookshelfSelect">Bookshelf: </label><br>
+                </td>
+                <td>
+                    <input type = "number" id = "bookshelfLength" placeholder = "1">
+                </td>
+                <td>
+                    <p> by </p>
+                </td>
+                <td>
+                    <input type = "number" id = "bookshelfWidth" placeholder = "1">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" id="chairSelect" name="chair" value="off">
+                    <label for="chairSelect">Chair: </label><br>
+                </td>
+                <td>
+                    <input type = "number" id = "chairHeight" placeholder = "1">
+                </td>
+                <td>
+                    <p> by </p>
+                </td>
+                <td>
+                    <input type = "number" id = "chairWidth" placeholder = "1">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" id="dresserSelect" name="dresser" value="off">
+                    <label for="dresserSelect">Dresser: </label><br>
+                </td>
+                <td>
+                    <input type = "number" id = "dresserHeight" placeholder = "1">
+                </td>
+                <td>
+                    <p> by </p>
+                </td>
+                <td>
+                    <input type = "number" id = "dresserWidth" placeholder = "1">
+                </td>
+            </tr>
+        </table>
+
+        <button type="button" id = "submitButton">Submit</button>
+    </form>
 </body>
 </html>
 
