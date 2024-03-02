@@ -24,7 +24,6 @@ def main():
             chairWidth = request.form(chairWidth)
             chairHeight = request.form(chairHeight)
 
-<<<<<<< HEAD
             if not user:
                 print('User is required!')
 
@@ -47,7 +46,5 @@ def main():
                 return render_template("home.html")
         
     return render_template("home.html")
-=======
 def genImage(bed, table, bookshelf, chair, dresser):
     
->>>>>>> 1d601ba93de3997c5cc518ffc4f9d75229ba516b
