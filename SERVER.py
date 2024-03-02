@@ -1,3 +1,3 @@
-import Flask
+import flask
 import numpy
 import pandas
