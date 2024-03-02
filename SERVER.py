@@ -12,5 +12,5 @@ app = Flask(__name__)
 def main():
     return render_template("index.html")
 
-def genImage():
+def genImage(bed, table, bookshelf, chair, dresser):
     
