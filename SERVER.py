@@ -59,3 +59,10 @@ def main():
     else:
         return render_template("index.html")
         #def genImage(bed, table, bookshelf, chair, dresser):
+    
+def genImage(furniture, d1, d2):
+    if(d1 !=0 and d2 !=0):
+        global global_prompt
+        dem1 = str(d1)
+        dem2 = str(d2)
+        global_prompt += f" a {dem1} by {dem2} {furniture}"
