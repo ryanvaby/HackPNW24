@@ -1,13 +1,7 @@
 import random
-from flask import Flask, render_template, Response, request, redirect, url_for
-app = Flask(__name__)
-
-@app.route("/")
-
-def index():
-    return render_template('index.html');
 
 def updateRandomPrompt():
+    global global_prompt
     all_furniture_items = ["bed", "table", "dresser", "bookshelf", "chair" ]
     room_items = []
     
@@ -17,24 +11,11 @@ def updateRandomPrompt():
     print(room_items)
     for i in room_items:
         if i == "chair":
-            #updatePrompt("chair", 2, 2)
-            print(i)
+            updatePrompt("chair", 2, 2)
         elif (i == "bed"):
-            #updatePrompt("bed", random.randrange(6, 11), random.randrange(4, 8))
-            print(i)
+            updatePrompt("bed", random.randrange(6, 11), random.randrange(4, 8))
         else:
-            #updatePrompt(i, random.randrange(2, 4), random.randrange(2, 6))
-            print(i)
-
+            updatePrompt(i, random.randrange(2, 4), random.randrange(2, 6))
 
 updateRandomPrompt() 
     
-    
-"""""
-    if(d1 !=0 and d2 !=0):
-        global global_prompt
-        dem1 = str(d1)
-        dem2 = str(d2)
-        global_prompt = global_prompt + (f" a {dem1} by {dem2} {furniture}")
-        print(global_prompt)
-"""

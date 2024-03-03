@@ -12,8 +12,6 @@ from io import BytesIO
 # Setup for flask application
 app = Flask(__name__)
 
-openai.api_key = 'your_api_key_here'
-
 # Declaring the following main_func() method as the code to run when user requests the home page of site
 global_prompt = ""
 
@@ -29,7 +27,7 @@ def main():
                     updatePrompt(item, request.form.get(item + "Width"), request.form.get(item + "Length"))
                 else:
                     continue
-            return genImage(global_prompt)
+            return genImage()
 
     else:
         return render_template("index.html")
@@ -44,23 +42,35 @@ def updatePrompt(furniture, d1, d2):
         print(global_prompt)
 
 def genImage():
-    img = fetch_dalle_image()
+    print("first")
+    image = fetch_dalle_image()
+    return render_template("result.html", image = image)
 
 
 def fetch_dalle_image():
+    
+    client = OpenAI(api_key="RUCHI & NANCY: PUT API KEY HERE")
+    print("second")
     global global_prompt
-    response = openai.Image.create(
-        model="dall-e-3",
+    print(global_prompt)
+    response = client.images.generate(
+        model="dall-e-2",
         prompt= global_prompt,
         n=1,
         size="1024x1024"
     )
     
     # Assuming the first image in the response is the one we want
-    image_url = response['data'][0]['url']
+    image_url = response.data[0].url
+    print(image_url)
+
     
     # Fetch the image
-    image_response = requests.get(image_url)
-    image = Image.open(BytesIO(image_response.content))
+    # image_response = requests.get(image_url)
+    # other_thing = get_as_base64(image_response)   
     
-    return image
+    return image_url
+
+def get_as_base64(url):
+    return base64.b64encode(requests.get(url).content)
+
