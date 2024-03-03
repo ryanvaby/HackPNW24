@@ -10,15 +10,16 @@ global_prompt = ""
 @app.route("/", methods=["GET", "POST"])
 def main():
 
-    global_prompt = "Simple 2 dimensional floor plan of my " + str(request.form.get("roomLength")) + " by " + str(request.form.get("roomWidth")) + " foot room with "
     if request.method == "POST":
+            global_prompt = "Simple 2 dimensional floor plan of my " + str(request.form.get("roomLength")) + " by " + str(request.form.get("roomWidth")) + " foot room with "
             furniture_items = ["bed", "table", "dresser", "bookshelf", "chair" ]
             for item in furniture_items:
                 if (request.form.get(item)):
                     #print(request.form.get(item+"Width"))
                     updatePrompt(item, request.form.get(item + "Width"), request.form.get(item + "Length"))
                 else:
-                    return render_template("index.html")
+                    continue
+            return render_template("index.html")
 
     else:
         return render_template("index.html")
