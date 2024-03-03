@@ -9,13 +9,8 @@
         </style>
     </head>   
     <body>
-        <table>
-            <tr>
-                <td>
-                    <p>Room</p>
-                    <img src="{{ image }}" class="center"/>
-                </td>
-            </tr>
-        </table>
+        <p>Room</p>
+        <img src="{{ image }}" style="display:none;" class="center"/>
+        <button type="submit" name = "randomBtn" onclick="updateRandomPrompt">Randomize</button>
     </body>
 </html>
