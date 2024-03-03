@@ -23,6 +23,8 @@ def main():
             global global_prompt
             global_prompt = global_prompt + "Simple 2 dimensional floor plan of my " + str(request.form.get("roomLength")) + " by " + str(request.form.get("roomWidth")) + " foot room with "
             furniture_items = ["bed", "table", "dresser", "bookshelf", "chair" ]
+            if (request.form.get("randomize")):
+                updateRandomPrompt()
             for item in furniture_items:
                 if (request.form.get(item)):
                     updatePrompt(item, request.form.get(item + "Width"), request.form.get(item + "Length"))
@@ -32,7 +34,6 @@ def main():
 
     else:
         return render_template("index.html")
-        #def genImage(bed, table, bookshelf, chair, dresser):
     
 def updatePrompt(furniture, d1, d2):
     if(d1 !=0 and d2 !=0):
@@ -64,16 +65,8 @@ def fetch_dalle_image():
     # Assuming the first image in the response is the one we want
     image_url = response.data[0].url
     print(image_url)
-
-    
-    # Fetch the image
-    # image_response = requests.get(image_url)
-    # other_thing = get_as_base64(image_response)   
     
     return image_url
-
-def get_as_base64(url):
-    return base64.b64encode(requests.get(url).content)
 
 def updateRandomPrompt():
     global global_prompt
@@ -91,5 +84,3 @@ def updateRandomPrompt():
             updatePrompt("bed", random.randrange(6, 11), random.randrange(4, 8))
         else:
             updatePrompt(i, random.randrange(2, 4), random.randrange(2, 6))
-
-
