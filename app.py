@@ -45,13 +45,15 @@ def updatePrompt(furniture, d1, d2):
 
 def genImage():
     print("first")
+    global global_prompt
+    global_prompt = global_prompt + ", with no additional furniture. Draw like the attached image. Keep it as bare bones as possible."
     image = fetch_dalle_image()
     return render_template("result.html", image = image)
 
 
 def fetch_dalle_image():
     
-    client = OpenAI(api_key="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")
+    client = OpenAI(api_key="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")
     print("second")
     global global_prompt
     print(global_prompt)
