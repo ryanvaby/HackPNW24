@@ -1,14 +1,18 @@
 from flask import Flask, render_template, request
 from openai import images, OpenAI
+import openai
 import base64
 from datetime import datetime 
-from PIL import Image
+from PIL import Image 
 import requests 
+from io import BytesIO
 
 
 
 # Setup for flask application
 app = Flask(__name__)
+
+openai.api_key = 'your_api_key_here'
 
 # Declaring the following main_func() method as the code to run when user requests the home page of site
 global_prompt = ""
@@ -39,6 +43,24 @@ def updatePrompt(furniture, d1, d2):
         global_prompt = global_prompt + (f" a {dem1} by {dem2} {furniture}")
         print(global_prompt)
 
-def genImage(prompt):
-    client = OpenAI(api_key="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") 
-    client = OpenAI()  # will use environment variable "OPENAI_API_KEY
+def genImage():
+    img = fetch_dalle_image()
+
+
+def fetch_dalle_image():
+    global global_prompt
+    response = openai.Image.create(
+        model="dall-e-3",
+        prompt= global_prompt,
+        n=1,
+        size="1024x1024"
+    )
+    
+    # Assuming the first image in the response is the one we want
+    image_url = response['data'][0]['url']
+    
+    # Fetch the image
+    image_response = requests.get(image_url)
+    image = Image.open(BytesIO(image_response.content))
+    
+    return image
