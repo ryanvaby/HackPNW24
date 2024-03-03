@@ -5,7 +5,7 @@ from openai import images, OpenAI
 app = Flask(__name__)
 
 # Declaring the following main_func() method as the code to run when user requests the home page of site
-gloabl_prompt = ""
+global_prompt = ""
 
 @app.route("/", methods=["GET", "POST"])
 def main():
@@ -13,8 +13,10 @@ def main():
             furniture_items = ["bed", "table", "dresser", "bookshelf", "chair" ]
             for item in furniture_items:
                 if (request.form.get(item)):
-                    print("hi")
-                    updatePrompt(item, request.form(item + "Width"), request.form(item + "Length"))
+                    #print(request.form.get(item+"Width"))
+                    updatePrompt(item, request.form.get(item + "Width"), request.form.get(item + "Length"))
+                else:
+                    return render_template("index.html")
 
 
             # dimensions = [roomLength, roomWidth, bedWidth, bedLength, tableLength, tableWidth, ]
@@ -67,4 +69,5 @@ def updatePrompt(furniture, d1, d2):
         global global_prompt
         dem1 = str(d1)
         dem2 = str(d2)
-        global_prompt += f" a {dem1} by {dem2} {furniture}"
+        global_prompt = global_prompt + (f" a {dem1} by {dem2} {furniture}")
+        print(global_prompt)
