@@ -11,11 +11,11 @@ global_prompt = ""
 def main():
 
     if request.method == "POST":
-            global_prompt = "Simple 2 dimensional floor plan of my " + str(request.form.get("roomLength")) + " by " + str(request.form.get("roomWidth")) + " foot room with "
+            global global_prompt
+            global_prompt = global_prompt + "Simple 2 dimensional floor plan of my " + str(request.form.get("roomLength")) + " by " + str(request.form.get("roomWidth")) + " foot room with "
             furniture_items = ["bed", "table", "dresser", "bookshelf", "chair" ]
             for item in furniture_items:
                 if (request.form.get(item)):
-                    #print(request.form.get(item+"Width"))
                     updatePrompt(item, request.form.get(item + "Width"), request.form.get(item + "Length"))
                 else:
                     continue
