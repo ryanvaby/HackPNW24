@@ -9,6 +9,8 @@ global_prompt = ""
 
 @app.route("/", methods=["GET", "POST"])
 def main():
+
+    global_prompt = "Simple 2 dimensional floor plan of my " + str(request.form.get("roomLength")) + " by " + str(request.form.get("roomWidth")) + " foot room with "
     if request.method == "POST":
             furniture_items = ["bed", "table", "dresser", "bookshelf", "chair" ]
             for item in furniture_items:
@@ -18,52 +20,12 @@ def main():
                 else:
                     return render_template("index.html")
 
-
-            # dimensions = [roomLength, roomWidth, bedWidth, bedLength, tableLength, tableWidth, ]
-            # roomLength = request.form(roomLength)
-            # roomWidth = request.form(roomWidth)
-            # bedWidth = request.form(bedWidth)
-            # bedLength = request.form(bedLength)
-            # tableWidth = request.form(tableWidth)
-            # tableLength = request.form(tableLength)
-            # dresserWidth = request.form(dresserWidth)
-            # dresserLength = request.form(dresserLength)
-            # bookshelfWidth = request.form(bookshelfWidth)
-            # bookshelfLength = request.form(bookshelfLength)
-            # chairWidth = request.form(chairWidth)
-            # chairLength = request.form(chairLength)
-
-            # if not roomLength:
-            #     roomLength = 0
-            # if not roomWidth:
-            #     roomWidth = 0
-            # if not bedLength:
-            #     bedLength = 0
-            # if not bedWidth:
-            #     bedWidth = 0
-            # if not tableLength:
-            #     tableLength = 0
-            # if not tableWidth:
-            #     tableWidth = 0
-            # if not dresserLength:
-            #     dresserLength = 0
-            # if not dresserWidth:
-            #     dresserWidth = 0
-            # if not bookshelfLength:
-            #     bookshelfLength = 0
-            # if not bookshelfWidth:
-            #     bookshelfWidth = 0
-            # if not chairLength:
-            #     chairLength = 0
-            # if not chairWidth:
-            #     chairWidth = 0
-
-            #genImage(roomLength, roomWidth, bedWidth, bedLength, tableLength, tableWidth, bookshelfLength, bookshelfWidth, chairLength, chairWidth, dresserLength,dresserWidth)
-
     else:
         return render_template("index.html")
         #def genImage(bed, table, bookshelf, chair, dresser):
     
+    global_prompt = global_prompt + ", with no additional furniture. Draw like the attached image. Keep it as bare bones as possible."
+    print(global_prompt)
 def updatePrompt(furniture, d1, d2):
     if(d1 !=0 and d2 !=0):
         global global_prompt
